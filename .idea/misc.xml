@@ -6,5 +6,5 @@
     <annotation-enable>false</annotation-enable>
     <other-services-enabled>false</other-services-enabled>
   </component>
-  <component name="ProjectRootManager" version="2" project-jdk-name="Python 3.6.1 virtualenv at I:\github\virtual\Django-IT-Manage" project-jdk-type="Python SDK" />
+  <component name="ProjectRootManager" version="2" project-jdk-name="Python 3.6.1 virtualenv at ~/Python-home/virtualenv/Django-IT-Manage" project-jdk-type="Python SDK" />
 </project>

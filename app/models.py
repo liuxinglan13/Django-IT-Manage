@@ -28,6 +28,14 @@ class OperatingSystems(models.Model):
     def __str__(self):
         return self.operatingsystem
 
+
+# 主机的使用状态（在用，停用，等）
+class Host_status(models.Model):
+    status = models.CharField(max_length=10)
+
+    def __str__(self):
+        return self.status
+
 class Host(models.Model):
     # IP地址
     ip = models.CharField(max_length=20)
@@ -35,6 +43,8 @@ class Host(models.Model):
     host_name = models.CharField(max_length=50)
     # 主机的用途,可以为空
     host_purpose = models.CharField(max_length=100, blank=True)
+    # 主机的使用状态 和 Host_status 对应
+    host_status = models.ForeignKey(Host_status)
     # 主机的分类，和 HostCateorys 一对一
     Host_category = models.ForeignKey(HostCategorys)
     # 主机的所属组，和HostGroups 一对一
