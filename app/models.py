@@ -36,6 +36,8 @@ class Host_status(models.Model):
     def __str__(self):
         return self.status
 
+# 主机的种类（物理机，虚拟机）
+
 class Host(models.Model):
     # IP地址
     ip = models.CharField(max_length=20)

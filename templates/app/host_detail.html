@@ -72,8 +72,12 @@
                                     <span>{{ post.modified_time|timesince }} 前</span>
                                 </div>
                             </div>
+
+                            <button type="submit" class="btn btn-white btn-info btn-bold">
+                                <i class="ace-icon fa fa-floppy-o bigger-120 blue"></i>
+                                <a href="{% url 'app:host_edit' pk=post.pk %}">编辑</a>
+                            </button>
                         </div>
-                        <a href="{% url 'app:host_edit' pk=post.pk %}">编辑</a>
                     </div>
                     <div class="col-xs-12 col-lg-6">
                         <div>
@@ -83,7 +87,6 @@
                                     <span>{{ post.Host_body }}</span>
                                 </div>
                             </div>
-
                         </div>
                     </div>
                 </div>
