@@ -6,7 +6,7 @@ from .models import Host
 class PostForm(forms.ModelForm):
     class Meta:
         model = Host
-        fields = ('ip', 'host_name', 'host_purpose', 'Host_category', 'Host_group', 'admin_Account', 'admin_password')
+        fields = ('ip', 'host_name', 'host_purpose', 'Host_category', 'Host_group', 'admin_Account', 'admin_password', 'Host_operatingsystem', 'Host_body')
 
         # 重写（覆盖）默认的字段 http://python.usyiyi.cn/translate/django_182/topics/forms/modelforms.html
         # 给title 添加了一个 css class类名

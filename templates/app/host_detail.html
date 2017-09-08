@@ -3,13 +3,87 @@
 
 
 {% block main %}
-<h3>ID：{{ post.id }}</h3>
-<h3>IP地址：{{ post.ip }}</h3>
-<h3>主机名：{{ post.host_name }}</h3>
-<h3>用途：{{ post.host_purpose }}</h3>
-<h3>所属组：{{ post.Host_group }}</h3>
-<h3>最后修改时间：{{ post.modified_time|timesince }} 前</h3>
 
-<a href="{% url 'app:host_edit' pk=post.pk %}">编辑</a>
+    <div class="table-detail">
+        <div class="row">
+            <div class="panel panel-primary">
+                <div class="panel-heading">服务器信息</div>
+                <div class="panel-body">
+                    <div class="col-xs-12 col-sm-3">
+                        <div class="space visible-xs"></div>
+                        <div class="profile-user-info profile-user-info-striped">
+                            <div class="profile-info-row">
+                                <div class="profile-info-name"> IP地址</div>
+                                <div class="profile-info-value">
+                                    <span>{{ post.ip }}</span>
+                                </div>
+                            </div>
+                            <div class="profile-info-row">
+                                <div class="profile-info-name"> 主机名</div>
+                                <div class="profile-info-value">
+                                    <span>{{ post.host_name }}</span>
+                                </div>
+                            </div>
+                            <div class="profile-info-row">
+                                <div class="profile-info-name"> 用途</div>
+                                <div class="profile-info-value">
+                                    <span>{{ post.host_purpose }}</span>
+                                </div>
+                            </div>
+                               <div class="profile-info-row">
+                                <div class="profile-info-name"> 分类</div>
+                                <div class="profile-info-value">
+                                    <span>{{ post.Host_category }}</span>
+                                </div>
+                            </div>
+                            <div class="profile-info-row">
+                                <div class="profile-info-name"> 所属组</div>
+                                <div class="profile-info-value">
+                                    <span class="label label-sm label-warning">{{ post.Host_group }}</span>
+                                </div>
+                            </div>
+                                <div class="profile-info-row">
+                                <div class="profile-info-name"> 操作系统</div>
+                                <div class="profile-info-value">
+                                    <span class="label label-sm label-warning">{{ post.Host_operatingsystem }}</span>
+                                </div>
+                            </div>
+                            <div class="profile-info-row">
+                                <div class="profile-info-name"> admin账号</div>
+                                <div class="profile-info-value">
+                                    <span>{{ post.admin_Account }}</span>
+                                </div>
+                            </div>
+                            <div class="profile-info-row">
+                                <div class="profile-info-name"> admin密码</div>
+                                <div class="profile-info-value">
+                                    <span>{{ post.admin_password }}</span>
+                                </div>
+                            </div>
+                            <div class="profile-info-row">
+                                <div class="profile-info-name"> 最后修改时间</div>
+                                <div class="profile-info-value">
+                                    <span>{{ post.modified_time|timesince }} 前</span>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="{% url 'app:host_edit' pk=post.pk %}">编辑</a>
+                    </div>
+                    <div class="col-xs-12 col-lg-6">
+                        <div>
+                            <div class="profile-info-row">
+                                <div class="profile-info-name"> 备注</div>
+                                <div class="profile-info-value">
+                                    <span>{{ post.Host_body }}</span>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 
 {% endblock main %}

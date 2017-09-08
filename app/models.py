@@ -20,6 +20,14 @@ class HostGroups(models.Model):
         return self.group
 
 
+# 操作系统分类
+
+class OperatingSystems(models.Model):
+    operatingsystem = models.CharField(max_length=30)
+
+    def __str__(self):
+        return self.operatingsystem
+
 class Host(models.Model):
     # IP地址
     ip = models.CharField(max_length=20)
@@ -31,10 +39,14 @@ class Host(models.Model):
     Host_category = models.ForeignKey(HostCategorys)
     # 主机的所属组，和HostGroups 一对一
     Host_group = models.ForeignKey(HostGroups)
+    # 主机的操作系统类型
+    Host_operatingsystem = models.ForeignKey(OperatingSystems)
     # 管理员账号
-    admin_Account = models.CharField(max_length=50, default="")
+    admin_Account = models.CharField(max_length=50, blank=True)
     # 管理员密码
-    admin_password = models.CharField(max_length=50, default="")
+    admin_password = models.CharField(max_length=50, blank=True)
+    # 主机的详细信息备注
+    Host_body = models.TextField(max_length=1000, blank=True)
     # 创建和最后一次修改时间
     # auto_now_add 自动保存当前时间 进数据
     created_time = models.DateTimeField(auto_now_add=True)

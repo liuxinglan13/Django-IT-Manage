@@ -3,6 +3,7 @@ from .models import Host
 from django.shortcuts import get_object_or_404
 from .forms import PostForm
 from django.views.generic import ListView, DetailView
+from django.core.urlresolvers import reverse
 
 
 # 首页的视图
