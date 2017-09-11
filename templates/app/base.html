@@ -105,6 +105,12 @@
 							运维信息管理平台
 						</small>
 					</a>
+                    <a href="{% url 'account_logout' %}" class="navbar-brand">
+						<small>
+							{{ user.username }} 注销登录
+						</small>
+					</a>
+
 				</div>
 			</div><!-- /.navbar-container -->
 		</div>
