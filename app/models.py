@@ -15,27 +15,27 @@ class HostCategorys(models.Model):
 
 # 主机的分组（所在资源池）
 class HostGroups(models.Model):
-    group = models.CharField(max_length=70)
+    name = models.CharField(max_length=70)
 
     def __str__(self):
-        return self.group
+        return self.name
 
 
 # 操作系统分类
 
 class OperatingSystems(models.Model):
-    operatingsystem = models.CharField(max_length=30)
+    name = models.CharField(max_length=30)
 
     def __str__(self):
-        return self.operatingsystem
+        return self.name
 
 
 # 主机的使用状态（在用，停用，等）
 class Host_status(models.Model):
-    status = models.CharField(max_length=10)
+    name = models.CharField(max_length=10)
 
     def __str__(self):
-        return self.status
+        return self.name
 
 # 主机的种类（物理机，虚拟机）
 
