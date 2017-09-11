@@ -10,11 +10,30 @@
                     <i class="ace-icon fa fa-floppy-o bigger-120 blue"></i>
                     <a href="{% url 'app:host_new' %}"> 新增主机信息</a>
                 </button>
-                {% get_tag as tag_list %}
+                {% get_group as group_list %}
+{#                主机组分类标签#}
                 <ul class="list-group panel-body">
-                    {% for Tag in tag_list %}
+                    {% for Group in group_list %}
                         <li class="list-group-item">
-                            <a href="{% url 'app:host_group' Tag.pk %}">{{ Tag.name }}</a>
+                            <a href="{% url 'app:host_group' Group.pk %}">{{ Group.name }}</a>
+                        </li>
+                    {% endfor %}
+                </ul>
+                {% get_status as status_list %}
+                {# 主机 状态 在用/停用 标签#}
+                <ul class="list-group panel-body">
+                    {% for Status in status_list %}
+                        <li class="list-group-item">
+                            <a href="{% url 'app:host_status' Status.pk %}">{{ Status.name }}</a>
+                        </li>
+                    {% endfor %}
+                </ul>
+                {% get_categorys as categorys_list %}
+                {# 主机 状态 在用/停用 标签#}
+                <ul class="list-group panel-body">
+                    {% for Categorys in categorys_list %}
+                        <li class="list-group-item">
+                            <a href="{% url 'app:host_category' Categorys.pk %}">{{ Categorys.name }}</a>
                         </li>
                     {% endfor %}
                 </ul>
@@ -41,7 +60,6 @@
                                                 <div class="clearfix">
                                                     <div class="pull-right tableTools-container"></div>
                                                 </div>
-
                                                 <div>
                                                     <table id="dynamic-table"
                                                            class="table table-striped table-bordered table-hover">
@@ -76,32 +94,26 @@
                                                                     <span class="label label-sm label-warning">{{ post.Host_group }}</span>
                                                                 </td>
                                                                 <td>
-                                                                    {#                                                            操作的按钮#}
+                                                                    {#操作的按钮#}
                                                                     <div class="hidden-sm hidden-xs action-buttons">
-                                                                        {#                                                                放大镜 的详情按钮#}
+                                                                        {#放大镜 的详情按钮#}
                                                                         <a class="blue"
                                                                            href="{{ post.get_absolute_url }}">
                                                                             <i class="ace-icon fa fa-search-plus bigger-130"></i>
                                                                         </a>
-
                                                                         <a class="green"
                                                                            href="{% url 'app:host_edit' pk=post.pk %}">
                                                                             <i class="ace-icon fa fa-pencil bigger-130"></i>
                                                                         </a>
-                                                         														</a>
                                                                     </div>
                                                                 </td>
                                                             </tr>
                                                         {% endfor %}
                                                         </tbody>
-
                                                     </table>
-
                                                 </div>
                                             </div>
                                         </div>
-                                        {#                                主机组标签 点击显示相应主机组内的主机#}
-
                                         <!-- PAGE CONTENT ENDS -->
                                     </div><!-- /.col -->
                                 </div><!-- /.row -->

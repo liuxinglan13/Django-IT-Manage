@@ -7,10 +7,10 @@ from ckeditor_uploader.fields import RichTextUploadingField
 # 主机的分类
 
 class HostCategorys(models.Model):
-    category = models.CharField(max_length=70)
+    name = models.CharField(max_length=70)
 
     def __str__(self):
-        return self.category
+        return self.name
 
 
 # 主机的分组（所在资源池）
