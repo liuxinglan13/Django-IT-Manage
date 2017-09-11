@@ -1,99 +1,100 @@
 {% extends 'app/base.html' %}
 {% load staticfiles %}
 
-
 {% block main %}
-
     <div class="table-detail">
-    <div class="row">
-        <div class="panel panel-primary">
-            <div class="panel-heading">服务器信息</div>
-            <div class="panel-body">
-                <div class="col-xs-12 col-sm-6">
-                    <div class="space visible-xs"></div>
-                    <div class="profile-user-info profile-user-info-striped">
-                        <div class="profile-info-row">
-                            <form method="POST" class="post-form">{% csrf_token %}
-
-                                <div class="profile-info-name"> IP地址</div>
-                                <div class="profile-info-value">
-                                    {{ form.ip }}
-                                    {{ form.ip.errors }}
-                                </div>
+        <div class="row">
+            <form method="POST" class="post-form">{% csrf_token %}
+                <div class="col-xs-4">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">服务器信息</div>
+                        <div class="panel-body">
+                            <div class="space visible-xs"></div>
+                            <div class="profile-user-info profile-user-info-striped">
                                 <div class="profile-info-row">
-                                    <div class="profile-info-name"> 主机名</div>
+                                    <div class="profile-info-name"> IP地址</div>
                                     <div class="profile-info-value">
-                                        {{ form.host_name }}
-                                        {{ form.host_name.errors }}
+                                        {{ form.ip }}
+                                        {{ form.ip.errors }}
                                     </div>
                                 </div>
-                                <div class="profile-info-row">
-                                    <div class="profile-info-name"> 用途</div>
-                                    <div class="profile-info-value">
-                                        {{ form.host_purpose }}
-                                        {{ form.host_purpose.errors }}
+                                    <div class="profile-info-row">
+                                        <div class="profile-info-name"> 主机名</div>
+                                        <div class="profile-info-value">
+                                            {{ form.host_name }}
+                                            {{ form.host_name.errors }}
+                                        </div>
+                                    </div>
+                                    <div class="profile-info-row">
+                                        <div class="profile-info-name"> 用途</div>
+                                        <div class="profile-info-value">
+                                            {{ form.host_purpose }}
+                                            {{ form.host_purpose.errors }}
+                                        </div>
+                                    </div>
+                                    <div class="profile-info-row">
+                                        <div class="profile-info-name"> 操作系统</div>
+                                        <div class="profile-info-value">
+                                            {{ form.Host_operatingsystem }}
+                                            {{ form.Host_operatingsystem.errors }}
+                                        </div>
+                                    </div>
+                                    <div class="profile-info-row">
+                                        <div class="profile-info-name"> 分类</div>
+                                        <div class="profile-info-value">
+                                            {{ form.Host_category }}
+                                            {{ form.Host_category.errors }}
+                                        </div>
+                                    </div>
+                                    <div class="profile-info-row">
+                                        <div class="profile-info-name"> 状态</div>
+                                        <div class="profile-info-value">
+                                            {{ form.host_status }}
+                                            {{ form.host_status.errors }}
+                                        </div>
+                                    </div>
+                                    <div class="profile-info-row">
+                                        <div class="profile-info-name"> 所属组</div>
+                                        <div class="profile-info-value">
+                                            {{ form.Host_group }}
+                                            {{ form.Host_group.errors }}
+                                        </div>
+                                    </div>
+                                    <div class="profile-info-row">
+                                        <div class="profile-info-name"> admin账号</div>
+                                        <div class="profile-info-value">
+                                            {{ form.admin_Account }}
+                                            {{ form.admin_Account.errors }}
+                                        </div>
+                                    </div>
+                                    <div class="profile-info-row">
+                                        <div class="profile-info-name"> admin密码</div>
+                                        <div class="profile-info-value">
+                                            {{ form.admin_password }}
+                                            {{ form.admin_password.errors }}
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="profile-info-row">
-                                    <div class="profile-info-name"> 操作系统</div>
-                                    <div class="profile-info-value">
-                                        {{ form.Host_operatingsystem }}
-                                        {{ form.Host_operatingsystem.errors }}
-                                    </div>
-                                </div>
-                                <div class="profile-info-row">
-                                    <div class="profile-info-name"> 分类</div>
-                                    <div class="profile-info-value">
-                                        {{ form.Host_category }}
-                                        {{ form.Host_category.errors }}
-                                    </div>
-                                </div>
-                                <div class="profile-info-row">
-                                    <div class="profile-info-name"> 状态</div>
-                                    <div class="profile-info-value">
-                                        {{ form.host_status }}
-                                        {{ form.host_status.errors }}
-                                    </div>
-                                </div>
-                                <div class="profile-info-row">
-                                    <div class="profile-info-name"> 所属组</div>
-                                    <div class="profile-info-value">
-                                        {{ form.Host_group }}
-                                        {{ form.Host_group.errors }}
-                                    </div>
-                                </div>
-                                <div class="profile-info-row">
-                                    <div class="profile-info-name"> admin账号</div>
-                                    <div class="profile-info-value">
-                                        {{ form.admin_Account }}
-                                        {{ form.admin_Account.errors }}
-                                    </div>
-                                </div>
-                                <div class="profile-info-row">
-                                    <div class="profile-info-name"> admin密码</div>
-                                    <div class="profile-info-value">
-                                        {{ form.admin_password }}
-                                        {{ form.admin_password.errors }}
-                                    </div>
-                                </div>
-                                <div class="profile-info-row">
-                                    <div class="profile-info-name"> 备注</div>
-                                    <div class="profile-info-value">
-                                        {{ form.Host_body }}
-                                        {{ form.Host_body.errors }}
-                                    </div>
-                                </div>
-                                <button type="submit" class="btn btn-white btn-info btn-bold">
-                                    <i class="ace-icon fa fa-floppy-o bigger-120 blue"></i>
-                                    提交
-                                </button>
-                            </form>
+                            </div>
                         </div>
+                           <button type="submit" class="btn btn-white btn-info btn-bold">
+                            <i class="ace-icon fa fa-floppy-o bigger-120 blue"></i>
+                            提交
+                        </button>
+                    </div>
+                <div class="col-xs-8">
+                    <div class="profile-info-row">
+                         <div class="panel panel-warning">
+                    <div class="panel-heading">备注信息</div>
+                    <div class="panel-body">
+                        {{ form.Host_body }}
+                            {{ form.Host_body.errors }}
                     </div>
                 </div>
-            </div>
+                </div>
+                <script type="text/javascript" src="{% static "ckeditor/ckeditor-init.js" %}"></script>
+                <script type="text/javascript" src="{% static "ckeditor/ckeditor/ckeditor.js" %}"></script>
+            </form>
         </div>
     </div>
-
 {% endblock main %}
-

@@ -1,5 +1,6 @@
 from django.db import models
 from django.urls import reverse
+from ckeditor_uploader.fields import RichTextUploadingField
 # Create your models here.
 
 
@@ -58,7 +59,7 @@ class Host(models.Model):
     # 管理员密码
     admin_password = models.CharField(max_length=50, blank=True)
     # 主机的详细信息备注
-    Host_body = models.TextField(max_length=1000, blank=True)
+    Host_body = RichTextUploadingField(verbose_name='正文')
     # 创建和最后一次修改时间
     # auto_now_add 自动保存当前时间 进数据
     created_time = models.DateTimeField(auto_now_add=True)

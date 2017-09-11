@@ -42,6 +42,8 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
+    'ckeditor',
+    'ckeditor_uploader',
 ]
 
 # django-allauth相关设置
@@ -141,3 +143,29 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
+CKEDITOR_UPLOAD_PATH = 'upload/'
+CKEDITOR_IMAGE_BACKEND = 'pillow'
+
+
+# 编辑器样式定制相关设置
+CKEDITOR_CONFIGS = {
+    'default': {
+        # 编辑器的宽高请根据你的页面自行设置
+        'width':'716px',
+        'height':'150px',
+        'image_previewText':' ',
+        'tabSpaces': 4,
+        'toolbar': 'Custom',
+        'toolbar_Custom': [
+            ['Bold', 'Italic', 'Underline', 'Format', 'RemoveFormat'],
+            ['NumberedList', 'BulletedList'],
+            ['Blockquote', 'CodeSnippet'],
+            ['Image', 'Link', 'Unlink'],
+            ['Maximize']
+        ],
+        'extraPlugins': ','.join(['codesnippet','uploadimage','prism','widget','lineutils',]),
+    }
+}
