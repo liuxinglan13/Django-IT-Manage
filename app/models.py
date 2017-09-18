@@ -37,11 +37,12 @@ class Host_status(models.Model):
     def __str__(self):
         return self.name
 
+
 # 主机的种类（物理机，虚拟机）
 
 class Host(models.Model):
     # IP地址
-    ip = models.CharField(max_length=20)
+    ip = models.GenericIPAddressField(verbose_name="IP地址", max_length=20)
     # 主机名
     host_name = models.CharField(max_length=50)
     # 主机的用途,可以为空
