@@ -166,6 +166,6 @@ CKEDITOR_CONFIGS = {
             ['Image', 'Link', 'Unlink'],
             ['Maximize']
         ],
-        'extraPlugins': ','.join(['codesnippet','uploadimage','prism','widget','lineutils',]),
+        # 'extraPlugins': ','.join(['codesnippet','uploadimage','prism','widget','lineutils',]),
     }
 }
