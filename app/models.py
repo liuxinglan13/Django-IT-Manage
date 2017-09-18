@@ -61,9 +61,10 @@ class Host(models.Model):
     # 主机的详细信息备注
     Host_body = RichTextUploadingField(verbose_name='正文')
     # 创建和最后一次修改时间
-    # auto_now_add 自动保存当前时间 进数据
+    # auto_now_add 当对象第一次被创建时自动设置当前时间
+    # auto_now     每次保存对象时，自动设置该字段为当前时间。用于"最后一次修改"的时间戳
     created_time = models.DateTimeField(auto_now_add=True)
-    modified_time = models.DateTimeField(auto_now_add=True)
+    modified_time = models.DateTimeField(auto_now=True)
 
     # 这个方法用来生产url
     def get_absolute_url(self):
