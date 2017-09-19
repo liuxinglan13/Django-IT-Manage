@@ -1,4 +1,4 @@
-from .models import Host, HostGroups, Host_status, HostCategorys
+from .models import Host, HostGroups, Host_status, HostCategorys, History
 from .forms import PostForm
 from django.views.generic import ListView, DetailView, UpdateView, CreateView
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -21,7 +21,11 @@ class HostDetailView(DetailView):
     template_name = 'app/host_detail.html'
     context_object_name = 'post'
 
-
+    def get_context_data(self, **kwargs):
+        context = super(HostDetailView, self).get_context_data(**kwargs)
+        context['history_list'] = History.objects.all()
+        print(context['history_list'])
+        return context
 # 基于类的 编辑更新数据视图
 
 class HostEditView(UpdateView):

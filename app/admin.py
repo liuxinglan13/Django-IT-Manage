@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import HostGroups, HostCategorys, Host, OperatingSystems, Host_status
+from .models import HostGroups, HostCategorys, Host, OperatingSystems, Host_status, History
 # Register your models here.
 
 
@@ -10,6 +10,10 @@ class HostAdmin(admin.ModelAdmin):
     search_fields = ('ip', 'Host_group')
     ordering = ['host_status', 'Host_category']                     # 排序
 
+
+class HistoryAdmin(admin.ModelAdmin):
+    list_display = ('host', 'body', 'created')
+admin.site.register(History, HistoryAdmin)
 admin.site.register(Host, HostAdmin)
 admin.site.register(HostGroups)
 admin.site.register(HostCategorys)

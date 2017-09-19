@@ -73,3 +73,15 @@ class Host(models.Model):
 
     def __str__(self):
         return self.host_name
+
+
+class History(models.Model):
+    host = models.ForeignKey(Host, related_name='historys')
+    body = models.CharField(max_length=100)
+    created = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ('created',)
+
+    def __str__(self):
+        return self.body
