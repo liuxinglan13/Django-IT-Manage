@@ -1,5 +1,5 @@
 from django import forms
-from .models import Host
+from .models import Host, HostComment
 from django.forms import TextInput, Select
 
 
@@ -16,4 +16,14 @@ class PostForm(forms.ModelForm):
             'host_purpose': TextInput(attrs={'class': 'form-control'}),
             'Host_category': Select(attrs={'class': 'form-control'}),
             'Host_operatingsystem': Select(attrs={'class': 'form-control'}),
+        }
+
+
+class HostCommentForm(forms.ModelForm):
+    class Meta:
+        model = HostComment
+        fields = ('body',)
+
+        widgets = {
+            'body': TextInput(attrs={'class': 'form-control'}),
         }

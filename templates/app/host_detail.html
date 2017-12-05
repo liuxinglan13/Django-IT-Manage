@@ -94,9 +94,29 @@
                         {{ post.Host_body|safe }}
                     </div>
                 </div>
+             <div class="panel panel-warning">
+                    <div class="panel-heading">操作记录</div>
+                    <div class="panel-body">
+                        {#操作记录输入框#}
+                        <form action="{{ post.get_absolute_url }}" method="post">
+                            {{ comment_form.as_p }}
+                            {% csrf_token %}
+                            <p><input type="submit" value="提交"></p>
+                        </form>
+                        {#操作记录显示框#}
+                    <div class="profile-user-info profile-user-info-striped">
+                        {% for comment in comments %}
+                            <div class="profile-info-row">
+                                <div class="profile-info-name">{{ comment.created|timesince }} 前 by {{ comment.author }}</div>
+                                <div class="profile-info-value">
+                                    <span>{{ comment.body|linebreaks }}</span>
+                                </div>
+                            </div>
+                        {% endfor %}
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-
-
 {% endblock main %}

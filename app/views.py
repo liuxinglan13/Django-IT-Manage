@@ -1,5 +1,5 @@
 from .models import Host, HostGroups, Host_status, HostCategorys
-from .forms import PostForm
+from .forms import PostForm, HostCommentForm
 from django.views.generic import ListView, DetailView, UpdateView, CreateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import get_object_or_404
@@ -20,6 +20,27 @@ class HostDetailView(DetailView):
     model = Host
     template_name = 'app/host_detail.html'
     context_object_name = 'post'
+
+    def post(self, request, *args, **kwargs):
+        response = super(HostDetailView, self).get(request, *args, **kwargs)
+        comment_form = HostCommentForm(data=self.request.POST)
+        if comment_form.is_valid():
+            new_comment = comment_form.save(commit=False)
+            new_comment.host = self.object
+            new_comment.author = self.request.user
+            new_comment.save()
+        return response
+
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        comment_form = HostCommentForm()
+        comments = self.object.hostcomments.all()
+        context['comments'] = comments
+        context['comment_form'] = comment_form
+        return context
+
+
 
 
 # 基于类的 编辑更新数据视图
