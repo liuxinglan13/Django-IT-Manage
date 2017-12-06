@@ -3,15 +3,26 @@ from .forms import PostForm, HostCommentForm
 from django.views.generic import ListView, DetailView, UpdateView, CreateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import get_object_or_404
+from django.shortcuts import render
+from django.views.generic.base import View
 
 
 # 基于类的首页视图  (访问控制 @login_required 登录后才可访问该视图  基于类的实现)
-class IndexView(LoginRequiredMixin, ListView):
+class IndexView(LoginRequiredMixin, View):
     login_url = '/accounts/login/'
     redirect_field_name = 'redirect_to'
+
+    def get(self, request):
+        return render(request, 'app/index.html')
+
+
+# 基于类的首页视图  (访问控制 @login_required 登录后才可访问该视图  基于类的实现)
+class HostView(LoginRequiredMixin, ListView):
+    # login_url = '/accounts/login/'
+    # redirect_field_name = 'redirect_to'
     model = Host
     context_object_name = 'post_list'
-    template_name = 'app/index.html'
+    template_name = 'app/host.html'
 
 
 # host详情视图
@@ -62,7 +73,7 @@ class HostCreateView(CreateView):
 class HostGroupView(ListView):
     # 这一部分和 IndexView 差不多  所有可以 通过 继承来 减少代码 类似 class CategoryView(IndexView):
     model = Host
-    template_name = 'app/index.html'
+    template_name = 'app/host.html'
     context_object_name = 'post_list'
 
     def get_queryset(self):
@@ -77,7 +88,7 @@ class HostGroupView(ListView):
 class HostStatusView(ListView):
     # 这一部分和 IndexView 差不多  所有可以 通过 继承来 减少代码 类似 class CategoryView(IndexView):
     model = Host
-    template_name = 'app/index.html'
+    template_name = 'app/host.html'
     context_object_name = 'post_list'
 
     def get_queryset(self):
@@ -92,7 +103,7 @@ class HostStatusView(ListView):
 class HostCategorysView(ListView):
     # 这一部分和 IndexView 差不多  所有可以 通过 继承来 减少代码 类似 class CategoryView(IndexView):
     model = Host
-    template_name = 'app/index.html'
+    template_name = 'app/host.html'
     context_object_name = 'post_list'
 
     def get_queryset(self):
