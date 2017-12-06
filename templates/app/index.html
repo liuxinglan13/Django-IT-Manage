@@ -3,43 +3,58 @@
 {% load host_tags %}
 
 {% block main %}
-     <div class="table-detail">
+    <div class="table-detail">
         <div class="row">
-            <div class="col-md-3">
-                  {% get_group as group_list %}
-{#                主机属组标签#}
-                <ul class="list-group panel-body">
-                    {% for Group in group_list %}
-                        <li class="list-group-item">
-                        <span class="badge">{{ Group.num_posts}}</span>
+            {#                主机属组标签#}
+            <div class="col-md-1">
+                {% get_group as group_list %}
+                {% for Group in group_list %}
+                    <div class="infobox infobox-green">
+                        <div class="infobox-icon">
+                            <!--将节点图表更改成 home，之后的雷同-->
+                            <i class="ace-icon fa fa-home"></i>
+                        </div>
+
+                        <div class="infobox-data">
+                            <span class="infobox-data-number">{{ Group.num_posts }}</span>
                             <a href="{% url 'app:host_group' Group.pk %}">{{ Group.name }}</a>
-                        </li>
-                    {% endfor %}
-                </ul>
+                        </div>
+                    </div>
+                {% endfor %}
             </div>
-            <div class="col-md-3">
+        {#                主机状态标签 在用/停用#}
+            <div class="col-md-1">
                 {% get_status as status_list %}
-                {#                 主机 状态 在用/停用 标签#}
-                <ul class="list-group panel-body">
-                    {% for Status in status_list %}
-                        <li class="list-group-item">
-                            <span class="badge">{{ Status.num_posts }}</span>
-                            <a href="{% url 'app:host_status' Status.pk %}">{{ Status.name }}</a>
-                        </li>
-                    {% endfor %}
-                </ul>
+                {% for Status in status_list %}
+                    <div class="infobox infobox-green">
+                        <div class="infobox-icon">
+                            <!--将节点图表更改成 home，之后的雷同-->
+                            <i class="ace-icon fa fa-edit"></i>
+                        </div>
+
+                        <div class="infobox-data">
+                            <span class="infobox-data-number">{{ Status.num_posts }}</span>
+                             <a href="{% url 'app:host_status' Status.pk %}">{{ Status.name }}</a>
+                        </div>
+                    </div>
+                {% endfor %}
             </div>
-        <div class="col-md-3">
-                               {% get_categorys as categorys_list %}
-{#                 主机 状态 在用/停用 标签#}
-                <ul class="list-group panel-body">
-                    {% for Categorys in categorys_list %}
-                        <li class="list-group-item">
-                        <span class="badge">{{ Categorys.num_posts}}</span>
-                            <a href="{% url 'app:host_category' Categorys.pk %}">{{ Categorys.name }}</a>
-                        </li>
-                    {% endfor %}
-                </ul>
+               {#                主机分类标签 物理机/虚拟机#}
+            <div class="col-md-1">
+                {% get_categorys as categorys_list %}
+                {% for Categorys in categorys_list %}
+                    <div class="infobox infobox-green">
+                        <div class="infobox-icon">
+                            <!--将节点图表更改成 home，之后的雷同-->
+                            <i class="ace-icon fa fa-home"></i>
+                        </div>
+
+                        <div class="infobox-data">
+                            <span class="infobox-data-number">{{ Categorys.num_posts }}</span>
+                             <a href="{% url 'app:host_category' Categorys.pk %}">{{ Categorys.name }}</a>
+                        </div>
+                    </div>
+                {% endfor %}
             </div>
         </div>
     </div>
