@@ -5,56 +5,83 @@
 {% block main %}
     <div class="table-detail">
         <div class="row">
-            {#                主机属组标签#}
-            <div class="col-md-1">
-                {% get_group as group_list %}
-                {% for Group in group_list %}
-                    <div class="infobox infobox-green">
-                        <div class="infobox-icon">
-                            <!--将节点图表更改成 home，之后的雷同-->
-                            <i class="ace-icon fa fa-home"></i>
-                        </div>
+            <div class="col-md-4">
+                <div class="panel panel-warning">
+                    <div class="panel-heading">服务器统计信息</div>
+                    <div class="panel-body">
+                        <div class="profile-user-info profile-user-info-striped">
+                            {% get_group as group_list %}
+                            {% for Group in group_list %}
+                                <div class="infobox infobox-green">
+                                    <div class="infobox-icon">
+                                        <!--将节点图表更改成 home，之后的雷同-->
+                                        <i class="ace-icon fa fa-home"></i>
+                                    </div>
 
-                        <div class="infobox-data">
-                            <span class="infobox-data-number">{{ Group.num_posts }}</span>
-                            <a href="{% url 'app:host_group' Group.pk %}">{{ Group.name }}</a>
+                                    <div class="infobox-data">
+                                        <span class="infobox-data-number">{{ Group.num_posts }}</span>
+                                        <a href="{% url 'app:host_group' Group.pk %}">{{ Group.name }} 服务器</a>
+                                    </div>
+                                </div>
+                            {% endfor %}
+
+                            {% get_status as status_list %}
+                            {% for Status in status_list %}
+                                <div class="infobox infobox-green">
+                                    <div class="infobox-icon">
+                                        <!--将节点图表更改成 home，之后的雷同-->
+                                        <i class="ace-icon fa fa-edit"></i>
+                                    </div>
+
+                                    <div class="infobox-data">
+                                        <span class="infobox-data-number">{{ Status.num_posts }}</span>
+                                        <a href="{% url 'app:host_status' Status.pk %}">{{ Status.name }}</a>
+                                    </div>
+                                </div>
+                            {% endfor %}
+
+
+
+                            {% get_categorys as categorys_list %}
+                            {% for Categorys in categorys_list %}
+                                <div class="infobox infobox-green">
+                                    <div class="infobox-icon">
+                                        <!--将节点图表更改成 home，之后的雷同-->
+                                        <i class="ace-icon fa fa-home"></i>
+                                    </div>
+
+                                    <div class="infobox-data">
+                                        <span class="infobox-data-number">{{ Categorys.num_posts }}</span>
+                                        <a href="{% url 'app:host_category' Categorys.pk %}">{{ Categorys.name }}</a>
+                                    </div>
+                                </div>
+                            {% endfor %}
                         </div>
                     </div>
-                {% endfor %}
+                </div>
+
+
             </div>
-        {#                主机状态标签 在用/停用#}
-            <div class="col-md-1">
-                {% get_status as status_list %}
-                {% for Status in status_list %}
-                    <div class="infobox infobox-green">
-                        <div class="infobox-icon">
-                            <!--将节点图表更改成 home，之后的雷同-->
-                            <i class="ace-icon fa fa-edit"></i>
-                        </div>
-
-                        <div class="infobox-data">
-                            <span class="infobox-data-number">{{ Status.num_posts }}</span>
-                             <a href="{% url 'app:host_status' Status.pk %}">{{ Status.name }}</a>
-                        </div>
-                    </div>
-                {% endfor %}
-            </div>
-               {#                主机分类标签 物理机/虚拟机#}
-            <div class="col-md-1">
-                {% get_categorys as categorys_list %}
-                {% for Categorys in categorys_list %}
-                    <div class="infobox infobox-green">
-                        <div class="infobox-icon">
-                            <!--将节点图表更改成 home，之后的雷同-->
-                            <i class="ace-icon fa fa-home"></i>
-                        </div>
-
-                        <div class="infobox-data">
-                            <span class="infobox-data-number">{{ Categorys.num_posts }}</span>
-                             <a href="{% url 'app:host_category' Categorys.pk %}">{{ Categorys.name }}</a>
+            <div class="col-md-8">
+                <div class="panel panel-warning">
+                    <div class="panel-heading">最近操作记录</div>
+                    <div class="panel-body">
+                        <div class="profile-user-info profile-user-info-striped">
+                            {% for host_comment in host_comment_list %}
+                                <div class="profile-info-row">
+                                    <div class="profile-info-name">{{ host_comment.created|timesince }} 前</div>
+                                    <div class="profile-info-value">
+                                        <span>{{ host_comment.body }}</span>
+                                    </div>
+                                    <div class="profile-info-name">{{ host_comment.host.ip }}</div>
+                                    <div class="profile-info-value">
+                                        <span>主机：{{ host_comment.host }}---操作人： {{ host_comment.author }}</span>
+                                    </div>
+                                </div>
+                            {% endfor %}
                         </div>
                     </div>
-                {% endfor %}
+                </div>
             </div>
         </div>
     </div>

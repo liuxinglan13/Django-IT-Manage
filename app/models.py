@@ -98,12 +98,10 @@ class HostComment(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     author = models.CharField(max_length=20, default='admin')
 
-    class Meta:
-        ordering = ('-created',)
-
     def __str__(self):
         return 'Comment {} {} on {}'.format(self.host, self.body, self.created)
 
     class Meta:
+        ordering = ('-created',)
         verbose_name = "主机操作记录"
         verbose_name_plural = verbose_name

@@ -1,4 +1,4 @@
-from .models import Host, HostGroups, Host_status, HostCategorys
+from .models import Host, HostGroups, Host_status, HostCategorys, HostComment
 from .forms import PostForm, HostCommentForm
 from django.views.generic import ListView, DetailView, UpdateView, CreateView
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -8,12 +8,15 @@ from django.views.generic.base import View
 
 
 # 基于类的首页视图  (访问控制 @login_required 登录后才可访问该视图  基于类的实现)
-class IndexView(LoginRequiredMixin, View):
+class IndexView(LoginRequiredMixin, ListView):
     login_url = '/accounts/login/'
     redirect_field_name = 'redirect_to'
+    model = HostComment
+    context_object_name = 'host_comment_list'
+    template_name = 'app/index.html'
 
-    def get(self, request):
-        return render(request, 'app/index.html')
+    def get_queryset(self):
+        return HostComment.objects.all()[0:5:1]
 
 
 # 基于类的首页视图  (访问控制 @login_required 登录后才可访问该视图  基于类的实现)
@@ -67,6 +70,16 @@ class HostEditView(UpdateView):
 class HostCreateView(CreateView):
     form_class = PostForm
     template_name = 'app/host_edit.html'
+
+    # def post(self, request, *args, **kwargs):
+    #     response = super(HostCreateView, self).get(request, *args, **kwargs)
+    #     comment_form = HostCommentForm()
+    #     new_comment = comment_form.save(commit=False)
+    #     new_comment.host = self.object
+    #     new_comment.author = self.request.user
+    #     new_comment.body = '添加主机记录'
+    #     new_comment.save()
+    #     return response
 
 
 # 主机组  视图（点击显示相应主机组下的所有主机）
