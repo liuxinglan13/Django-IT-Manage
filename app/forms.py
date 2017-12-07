@@ -25,5 +25,5 @@ class HostCommentForm(forms.ModelForm):
         fields = ('body',)
 
         widgets = {
-            'body': TextInput(attrs={'class': 'form-control'}),
+            'body': TextInput(attrs={'class': 'form-test'}),
         }
