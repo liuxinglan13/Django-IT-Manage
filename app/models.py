@@ -94,7 +94,7 @@ class Host(models.Model):
 
 class HostComment(models.Model):
     host = models.ForeignKey(Host, related_name='hostcomments')
-    body = models.CharField(max_length=100, verbose_name='操作记录')
+    body = models.CharField(max_length=100, verbose_name='添加操作记录')
     created = models.DateTimeField(auto_now_add=True)
     author = models.CharField(max_length=20, default='admin')
 

@@ -16,7 +16,7 @@ class IndexView(LoginRequiredMixin, ListView):
     template_name = 'app/index.html'
 
     def get_queryset(self):
-        return HostComment.objects.all()[0:5:1]
+        return HostComment.objects.all()[0:8:1]
 
 
 # 基于类的首页视图  (访问控制 @login_required 登录后才可访问该视图  基于类的实现)
