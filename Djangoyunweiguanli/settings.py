@@ -27,8 +27,23 @@ SECRET_KEY = 'k9#-b)rf@o)+3lt&bvbaq47-!=4ln^u%8ztpjmn5l&c@o01za$'
 if socket.gethostname() == 'ubunt-virtual-machine':
     DEBUG = False
     ALLOWED_HOSTS = ['*']
-    INSTALLED_APPS += ('gunicorn',)
     STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+    INSTALLED_APPS = [
+        'django.contrib.admin',
+        'django.contrib.auth',
+        'django.contrib.contenttypes',
+        'django.contrib.sessions',
+        'django.contrib.messages',
+        'django.contrib.staticfiles',
+        'app.apps.AppConfig',
+        'django.contrib.sites',
+        'allauth',
+        'allauth.account',
+        'allauth.socialaccount',
+        'ckeditor',
+        'ckeditor_uploader',
+        'gunicorn',
+    ]
 else:
     DEBUG = True
     ALLOWED_HOSTS = []
