@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 """
 
 import os
+import socket
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -23,9 +24,14 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'k9#-b)rf@o)+3lt&bvbaq47-!=4ln^u%8ztpjmn5l&c@o01za$'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-ALLOWED_HOSTS = []
+if socket.gethostname() == 'ubunt-virtual-machine':
+    DEBUG = False
+    ALLOWED_HOSTS = ['*']
+    INSTALLED_APPS += ('gunicorn',)
+    STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+else:
+    DEBUG = True
+    ALLOWED_HOSTS = []
 
 
 # Application definition
