@@ -4,10 +4,7 @@
 
 {% block main %}
     <div class="table-detail">
-        <button class="btn btn-white btn-info btn-bold">
-            <i class="ace-icon fa fa-floppy-o bigger-120 blue"></i>
-            <a href="{% url 'app:host_new' %}"> 新增主机信息</a>
-        </button>
+
         <div class="row">
             <div class="col-xs-12">
                 <body class="no-skin">
@@ -29,6 +26,12 @@
                                         <div class="row">
                                             <div class="col-xs-12">
                                                 <div class="clearfix">
+                                                    <div class="pull-left">
+                                                        <button class="btn btn-white btn-info btn-bold">
+                                                            <i class="ace-icon fa fa-floppy-o bigger-120 blue"></i>
+                                                            <a href="{% url 'app:host_new' %}"> 新增主机信息</a>
+                                                        </button>
+                                                    </div>
                                                     <div class="pull-right tableTools-container"></div>
                                                 </div>
                                                 <div>
@@ -234,7 +237,7 @@
                             $('#dynamic-table').find('tbody > tr').each(function () {
                                 var row = this;
                                 if (th_checked) myTable.row(row).select();
-                                else  myTable.row(row).deselect();
+                                else myTable.row(row).deselect();
                             });
                         });
 

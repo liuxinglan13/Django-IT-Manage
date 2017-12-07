@@ -1,188 +1,129 @@
 {% load staticfiles %}
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-		<meta charset="utf-8" />
-		<title>运维平台</title>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta charset="utf-8"/>
+    <title>运维平台</title>
 
-		<meta name="description" content="bootstrap grid sizing" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+    <meta name="description" content="bootstrap grid sizing"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
 
-		<!-- bootstrap & fontawesome -->
-		<link rel="stylesheet" href="{% static 'app/css/bootstrap.min.css' %}" />
-		<link rel="stylesheet" href="{% static 'app/font-awesome/4.5.0/css/font-awesome.min.css' %}" />
+    <!-- bootstrap & fontawesome -->
+    <link rel="stylesheet" href="{% static 'app/css/bootstrap.min.css' %}"/>
+    <link rel="stylesheet" href="{% static 'app/font-awesome/4.5.0/css/font-awesome.min.css' %}"/>
 
-		<!-- page specific plugin styles -->
+    <!-- page specific plugin styles -->
 
-		<!-- text fonts -->
-		<link rel="stylesheet" href="{% static 'app/css/fonts.googleapis.com.css' %}" />
+    <!-- text fonts -->
+    <link rel="stylesheet" href="{% static 'app/css/fonts.googleapis.com.css' %}"/>
 
-		<!-- ace styles -->
-		<link rel="stylesheet" href="{% static 'app/css/ace.min.css' %}" class="ace-main-stylesheet" id="main-ace-style" />
+    <!-- ace styles -->
+    <link rel="stylesheet" href="{% static 'app/css/ace.min.css' %}" class="ace-main-stylesheet" id="main-ace-style"/>
 
-{#		<!--[if lte IE 9]>#}
-{#			<link rel="stylesheet" href="assets/css/ace-part2.min.css" class="ace-main-stylesheet" />#}
-{#		<![endif]-->#}
-		<link rel="stylesheet" href="{% static 'app/css/ace-skins.min.css' %}" />
-		<link rel="stylesheet" href="{% static 'app/css/ace-rtl.min.css' %}" />
 
-{#		<!--[if lte IE 9]>#}
-{#		  <link rel="stylesheet" href="assets/css/ace-ie.min.css" />#}
-{#		<![endif]-->#}
+    <link rel="stylesheet" href="{% static 'app/css/ace-skins.min.css' %}"/>
+    <link rel="stylesheet" href="{% static 'app/css/ace-rtl.min.css' %}"/>
 
-		<!-- inline styles related to this page -->
-		<style>
-			/* styling the grid page's grid elements */
-.center {
-	text-align: center;
-}
-.center [class*="col-"] {
-	margin-top: 2px;
-	margin-bottom: 2px;
 
-	position: relative;
-	text-overflow: ellipsis;
-}
-.center [class*="col-"]  div{
-  position: relative;
-  z-index: 2;
+    <script src="{% static 'app/js/ace-extra.min.js' %}"></script>
 
-  	padding-top: 4px;
-	padding-bottom: 4px;
+    <style>
+        .page-content {
+            padding: 1px 1px 1px;
+        }
 
-  display: block;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+        .panel-body {
+            padding: 0px;
+        }
 
-  width: 100%;
-}
-.center [class*="col-"]  div span{
-  position: relative;
-  z-index: 2;
-}
-.center [class*="col-"] div:before {
-	display: block;
-	content: "";
+    </style>
+</head>
 
-	position: absolute;
-	top: 0;
-	bottom: 0;
-	left: 0;
-	right: 0;
-	z-index: 1;
-
-	border: 1px solid #DDD;
-}
-
-.page-content {
-    padding: 1px 1px 1px;
-}
-
-.panel-body {
-    padding: 0px;
-}
-
-.panel-body img {
-    height: auto !important;
-    max-width: 100% !important;
-}
-
-                 {% block style %}
-                {% endblock style %}
-
-		</style>
-
-		<!-- ace settings handler -->
-		<script src="{% static 'app/js/ace-extra.min.js' %}"></script>
-
-		<!-- HTML5shiv and Respond.js for IE8 to support HTML5 elements and media queries -->
-
-{#		<!--[if lte IE 8]>#}
-{#		<script src="assets/js/html5shiv.min.js"></script>#}
-{#		<script src="assets/js/respond.min.js"></script>#}
-{#		<![endif]-->#}
-	</head>
-
-	<body class="no-skin">
+<body class="no-skin">
 <div id="navbar" class="navbar navbar-default">
-			<div class="navbar-container" id="navbar-container">
-				<div class="navbar-header pull-left">
-					<a href="{% url 'app:index' %}" class="navbar-brand">
-						<small>
-							<i class="fa fa-leaf"></i>
-							运维信息管理平台
-						</small>
-					</a>
-                </div>
+    <div class="navbar-container" id="navbar-container">
+        <div class="navbar-header pull-left">
+            <a href="{% url 'app:index' %}" class="navbar-brand">
+                <small>
+                    <i class="fa fa-leaf"></i>
+                    运维信息管理平台
+                </small>
+            </a>
+        </div>
 
-				<div class="navbar-buttons navbar-header pull-right" role="navigation">
-					<ul class="nav ace-nav">
-						<li class="light-blue">
-							<a data-toggle="dropdown" href="{% url 'account_logout' %}" class="dropdown-toggle">
-								<span class="user-info">
-                                      <small>{{user.username}}已登录/注销</small>
-								</span>
-							</a>
-							</ul>
-						</li>
-					</ul>
-				</div>
-			</div><!-- /.navbar-container -->
-		</div>
+        <div class="navbar-buttons navbar-header pull-right" role="navigation">
+            <ul class="nav ace-nav">
+                <li class="light-blue">
+                    <a href="{% url 'account_logout' %}">
+                        <span class="user-info">
+                            <small>{{ user.username }}已登录/注销</small>
+                        </span>
+                    </a>
+            </ul>
+            </li>
+        </div>
+    </div><!-- /.navbar-container -->
+</div>
 
-		<div class="main-container ace-save-state" id="main-container">
-			<script type="text/javascript">
-				try{ace.settings.loadState('main-container')}catch(e){}
-			</script>
+<div class="main-container ace-save-state" id="main-container">
+    <script type="text/javascript">
+        try {
+            ace.settings.loadState('main-container')
+        } catch (e) {
+        }
+    </script>
 
-{#            左侧导航栏#}
-			<div id="sidebar" class="sidebar                  responsive                    ace-save-state">
-				<script type="text/javascript">
-					try{ace.settings.loadState('sidebar')}catch(e){}
-				</script>
+    {#            左侧导航栏#}
+    <div id="sidebar" class="sidebar                  responsive                    ace-save-state">
+        <script type="text/javascript">
+            try {
+                ace.settings.loadState('sidebar')
+            } catch (e) {
+            }
+        </script>
 
-				<ul class="nav nav-list">
-					<li class="">
-						<a href="{% url 'app:index' %}">
-							<i class="menu-icon fa fa-tachometer"></i>
-							<span class="menu-text"> 控制中心 </span>
-						</a>
-						<b class="arrow"></b>
-					</li>
-                    	<li class="">
-						<a href="{% url 'app:host' %}">
-							<i class="menu-icon fa fa-tachometer"></i>
-							<span class="menu-text"> 服务器信息 </span>
-						</a>
-						<b class="arrow"></b>
-					</li>
-				</ul><!-- /.nav-list -->
+        <ul class="nav nav-list">
+            <li class="">
+                <a href="{% url 'app:index' %}">
+                    <i class="menu-icon fa fa-tachometer"></i>
+                    <span class="menu-text"> 控制中心 </span>
+                </a>
+                <b class="arrow"></b>
+            </li>
+            <li class="">
+                <a href="{% url 'app:host' %}">
+                    <i class="menu-icon fa fa-desktop"></i>
+                    <span class="menu-text"> 服务器信息 </span>
+                </a>
+                <b class="arrow"></b>
+            </li>
+        </ul><!-- /.nav-list -->
 
-				<div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse">
-					<i id="sidebar-toggle-icon" class="ace-icon fa fa-angle-double-left ace-save-state" data-icon1="ace-icon fa fa-angle-double-left" data-icon2="ace-icon fa fa-angle-double-right"></i>
-				</div>
-			</div>
+        <div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse">
+            <i id="sidebar-toggle-icon" class="ace-icon fa fa-angle-double-left ace-save-state"
+               data-icon1="ace-icon fa fa-angle-double-left" data-icon2="ace-icon fa fa-angle-double-right"></i>
+        </div>
+    </div>
 
-			<div class="main-content">
+    <div class="main-content">
 
-                 {% block main %}
-                {% endblock main %}
-			</div><!-- /.main-content -->
+        {% block main %}
+        {% endblock main %}
+    </div><!-- /.main-content -->
 
 
-{#            底部信息栏#}
-			<div class="footer">
-				<div class="footer-inner">
-					<div class="footer-content">
+    {#            底部信息栏#}
+    <div class="footer">
+        <div class="footer-inner">
+            <div class="footer-content">
 						<span class="bigger-120">
 							<span class="blue bolder">Rokin</span>
 							Application &copy; 2017-2020
 						</span>
 
-						&nbsp; &nbsp;
-						<span class="action-buttons">
+                &nbsp; &nbsp;
+                <span class="action-buttons">
 							<a href="#">
 								<i class="ace-icon fa fa-twitter-square light-blue bigger-150"></i>
 							</a>
@@ -195,15 +136,15 @@
 								<i class="ace-icon fa fa-rss-square orange bigger-150"></i>
 							</a>
 						</span>
-					</div>
-				</div>
-			</div>
+            </div>
+        </div>
+    </div>
 
-			<a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
-				<i class="ace-icon fa fa-angle-double-up icon-only bigger-110"></i>
-			</a>
-		</div><!-- /.main-container -->
-	</body>
+    <a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
+        <i class="ace-icon fa fa-angle-double-up icon-only bigger-110"></i>
+    </a>
+</div><!-- /.main-container -->
+</body>
 </html>
 
 
