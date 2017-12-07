@@ -2,65 +2,78 @@
 {% load staticfiles %}
 {% load host_tags %}
 
+{% block style %}
+    .col-md-4 {
+    padding-left: 0px;
+    padding-right: 0px;
+    
+    }
+{% endblock style %}
+
 {% block main %}
     <div class="table-detail">
         <div class="row">
             <div class="col-md-4">
-                <div class="panel panel-warning">
-                    <div class="panel-heading">服务器统计信息</div>
-                    <div class="panel-body">
-                        <div class="profile-user-info profile-user-info-striped">
-                            {% get_group as group_list %}
-                            {% for Group in group_list %}
-                                <div class="infobox infobox-green">
-                                    <div class="infobox-icon">
-                                        <!--将节点图表更改成 home，之后的雷同-->
-                                        <i class="ace-icon fa fa-home"></i>
-                                    </div>
+                    <div class="panel panel-warning">
+                        <div class="panel-heading">服务器统计信息</div>
+                        <div class="panel-body">
+                            <div class="profile-user-info profile-user-info-striped">
+                             <div class="row">
+                                <div class="col-md-4">
+                                    {% get_group as group_list %}
+                                    {% for Group in group_list %}
+                                        <div class="infobox infobox-green">
+                                            <div class="infobox-icon">
+                                                <!--将节点图表更改成 home，之后的雷同-->
+                                                <i class="ace-icon fa fa-home"></i>
+                                            </div>
 
-                                    <div class="infobox-data">
-                                        <span class="infobox-data-number">{{ Group.num_posts }}</span>
-                                        <a href="{% url 'app:host_group' Group.pk %}">{{ Group.name }} 服务器</a>
-                                    </div>
+                                            <div class="infobox-data">
+                                                <span class="infobox-data-number">{{ Group.num_posts }}</span>
+                                                <a href="{% url 'app:host_group' Group.pk %}">{{ Group.name }} 服务器</a>
+                                            </div>
+                                        </div>
+                                    {% endfor %}
                                 </div>
-                            {% endfor %}
+                                <div class="col-md-4">
+                                    {% get_status as status_list %}
+                                    {% for Status in status_list %}
+                                        <div class="infobox infobox-green">
+                                            <div class="infobox-icon">
+                                                <!--将节点图表更改成 home，之后的雷同-->
+                                                <i class="ace-icon fa fa-edit"></i>
+                                            </div>
 
-                            {% get_status as status_list %}
-                            {% for Status in status_list %}
-                                <div class="infobox infobox-green">
-                                    <div class="infobox-icon">
-                                        <!--将节点图表更改成 home，之后的雷同-->
-                                        <i class="ace-icon fa fa-edit"></i>
-                                    </div>
-
-                                    <div class="infobox-data">
-                                        <span class="infobox-data-number">{{ Status.num_posts }}</span>
-                                        <a href="{% url 'app:host_status' Status.pk %}">{{ Status.name }}</a>
-                                    </div>
+                                            <div class="infobox-data">
+                                                <span class="infobox-data-number">{{ Status.num_posts }}</span>
+                                                <a href="{% url 'app:host_status' Status.pk %}">{{ Status.name }}</a>
+                                            </div>
+                                        </div>
+                                    {% endfor %}
                                 </div>
-                            {% endfor %}
+                                <div class="col-md-4">
 
+                                    {% get_categorys as categorys_list %}
+                                    {% for Categorys in categorys_list %}
+                                        <div class="infobox infobox-green">
+                                            <div class="infobox-icon">
+                                                <!--将节点图表更改成 home，之后的雷同-->
+                                                <i class="ace-icon fa fa-home"></i>
+                                            </div>
 
-
-                            {% get_categorys as categorys_list %}
-                            {% for Categorys in categorys_list %}
-                                <div class="infobox infobox-green">
-                                    <div class="infobox-icon">
-                                        <!--将节点图表更改成 home，之后的雷同-->
-                                        <i class="ace-icon fa fa-home"></i>
-                                    </div>
-
-                                    <div class="infobox-data">
-                                        <span class="infobox-data-number">{{ Categorys.num_posts }}</span>
-                                        <a href="{% url 'app:host_category' Categorys.pk %}">{{ Categorys.name }}</a>
-                                    </div>
+                                            <div class="infobox-data">
+                                                <span class="infobox-data-number">{{ Categorys.num_posts }}</span>
+                                                <a href="{% url 'app:host_category' Categorys.pk %}">{{ Categorys.name }}</a>
+                                            </div>
+                                        </div>
+                                    {% endfor %}
                                 </div>
-                            {% endfor %}
+                            </div>
+
+
                         </div>
                     </div>
                 </div>
-
-
             </div>
             <div class="col-md-8">
                 <div class="panel panel-warning">
@@ -85,4 +98,5 @@
             </div>
         </div>
     </div>
+
 {% endblock main %}
