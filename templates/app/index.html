@@ -22,7 +22,7 @@
 
                                         <div class="infobox-data">
                                             <span class="infobox-data-number">{{ Group.num_posts }}</span>
-                                            <a href="{% url 'app:host_group' Group.pk %}">{{ Group.name }} 服务器</a>
+                                            <a href="{% url 'app:host_filter' 'group' Group.pk  %}">{{ Group.name }} 服务器</a>
                                         </div>
                                     </div>
                                 {% endfor %}
@@ -38,7 +38,7 @@
 
                                         <div class="infobox-data">
                                             <span class="infobox-data-number">{{ Status.num_posts }}</span>
-                                            <a href="{% url 'app:host_status' Status.pk %}">{{ Status.name }}</a>
+                                            <a href="{% url 'app:host_filter' 'status' Status.pk %}">{{ Status.name }}</a>
                                         </div>
                                     </div>
                                 {% endfor %}
@@ -55,7 +55,7 @@
 
                                         <div class="infobox-data">
                                             <span class="infobox-data-number">{{ Categorys.num_posts }}</span>
-                                            <a href="{% url 'app:host_category' Categorys.pk %}">{{ Categorys.name }}</a>
+                                            <a href="{% url 'app:host_filter' 'category' Categorys.pk %}">{{ Categorys.name }}</a>
                                         </div>
                                     </div>
                                 {% endfor %}
@@ -107,7 +107,34 @@
         </div>
     </div>
 
+<div id="main" style="width: 600px;height:400px;"></div>
+    <script type="text/javascript">
+        // 基于准备好的dom，初始化echarts实例
+        var myChart = echarts.init(document.getElementById('main'));
 
+        // 指定图表的配置项和数据
+        var option = {
+            title: {
+                text: '主机分组情况'
+            },
+            tooltip: {},
+            legend: {
+                data:['主机数量']
+            },
+            xAxis: {
+                data: ["CRM","TRM","OA","TUNE","WMS","Manage"]
+            },
+            yAxis: {},
+            series: [{
+                name: '数量',
+                type: 'bar',
+                data: [5, 20, 36, 10, 10, 20]
+            }]
+        };
+
+        // 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option);
+    </script>
 
 
 {% endblock main %}
